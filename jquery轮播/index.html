@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>轮播图</title>
+		<link rel="stylesheet" href="css.css" />
+		<script src="jquery-3.1.1.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="inner">
+				<ul>
+
+					<li class="lun"><img src="./img/6.jpg" alt="如果时间可以记得" /></li>
+					<li class="lun"><img src="./img/7.jpg" alt="如果时间可以记得" /></li>
+					<li class="lun"><img src="./img/8.jpg" alt="如果时间可以记得" /></li>
+					<li class="lun"><img src="./img/9.jpg" alt="如果时间可以记得" /></li>
+					<li class="lun"><img src="./img/10.jpg" alt="如果时间可以记得" /></li>
+				
+				</ul>	
+			</div>
+			<div class="tips">
+				<ul>
+					<li class="duo"><img src="./img/6.jpg" alt="如果时间可以记得" /></li>
+					<li class="duo"><img src="./img/7.jpg" alt="如果时间可以记得" /></li>
+					<li class="duo"><img src="./img/8.jpg" alt="如果时间可以记得" /></li>
+					<li class="duo"><img src="./img/9.jpg" alt="如果时间可以记得" /></li>
+					<li class="duo"><img src="./img/10.jpg" alt="如果时间可以记得" /></li>
+				</ul>
+			</div>
+			<div class="pointer">
+				<a href="javascript:;" class="pointer_left"><</a>
+				<a href="javascript:;" class="pointer_right">></a>
+			</div>
+		</div>
+		<script>
+			$(function()
+			{
+				var i=0;
+			    var timer;
+			    $('.inner .lun:not(:first-child)').hide();
+			    getTime();
+			    function getTime()
+			    {
+			    	timer=setInterval(function()
+			    	{
+			    		style();
+			    		i++;
+			    		if(i==5)
+			    		{
+			    			i=0;
+			    		}
+			    	},2000)
+			    }
+//			    
+//			    
+			    function style()
+			    {
+			    	$('.lun').eq(i).fadeIn(300).siblings('.lun').fadeOut(300);
+			    	$('.duo').eq(i).addClass('aa').siblings('.duo').removeClass('aa');
+			    }
+//			    
+			    $('.duo').hover(function()
+			    {
+			    	i=$(this).index();
+			    	style();
+			    	clearInterval(timer);
+			    },function()
+			    {
+			    	getTime();
+			    });
+			    
+			    $('.pointer_left').click(function()
+			    {
+			    	clearInterval(timer);
+			    	if(i==0)
+			    	{
+			    		i=5;
+			    	}
+			    	i--;
+			    	
+			    	getTime();
+			    	style();
+			    })
+			    
+			    $('.pointer_right').click(function()
+			    {
+			    	clearInterval(timer);
+			    	if(i==4)
+			    	{
+			    		i=-1;
+			    	}
+			    	i++;
+			    	
+			    	getTime();
+			    	style();
+			    }) 
+			})
+		</script>
+	</body>
+</html>
